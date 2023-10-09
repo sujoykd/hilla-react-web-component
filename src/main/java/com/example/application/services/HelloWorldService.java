@@ -3,6 +3,7 @@ package com.example.application.services;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.BrowserCallable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @BrowserCallable
 @AnonymousAllowed

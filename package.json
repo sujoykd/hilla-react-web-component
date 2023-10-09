@@ -28,7 +28,9 @@
   },
   "devDependencies": {
     "@lit-labs/react": "^1.1.0",
+    "@r2wc/react-to-web-component": "^2.0.2",
     "@rollup/plugin-replace": "5.0.2",
+    "@rollup/plugin-typescript": "^11.1.4",
     "@rollup/pluginutils": "5.0.2",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
@@ -48,28 +50,28 @@
     "workbox-precaching": "7.0.0"
   },
   "overrides": {
-    "@vaadin/router": "$@vaadin/router",
-    "@vaadin/common-frontend": "$@vaadin/common-frontend",
-    "construct-style-sheets-polyfill": "$construct-style-sheets-polyfill",
-    "lit": "$lit",
-    "@polymer/polymer": "$@polymer/polymer",
-    "@vaadin/bundles": "$@vaadin/bundles",
-    "@hilla/react-components": "$@hilla/react-components",
     "classnames": "$classnames",
     "react": "$react",
     "react-dom": "$react-dom",
     "react-router-dom": "$react-router-dom",
+    "@vaadin/bundles": "$@vaadin/bundles",
+    "@hilla/react-components": "$@hilla/react-components",
+    "@vaadin/common-frontend": "$@vaadin/common-frontend",
+    "construct-style-sheets-polyfill": "$construct-style-sheets-polyfill",
+    "lit": "$lit",
+    "@vaadin/router": "$@vaadin/router",
+    "@polymer/polymer": "$@polymer/polymer",
     "@hilla/generator-typescript-plugin-model": "$@hilla/generator-typescript-plugin-model",
+    "@hilla/frontend": "$@hilla/frontend",
+    "@hilla/form": "$@hilla/form",
     "@hilla/generator-typescript-plugin-barrel": "$@hilla/generator-typescript-plugin-barrel",
+    "@hilla/react-form": "$@hilla/react-form",
     "@hilla/generator-typescript-plugin-push": "$@hilla/generator-typescript-plugin-push",
     "@hilla/generator-typescript-core": "$@hilla/generator-typescript-core",
     "@hilla/generator-typescript-plugin-client": "$@hilla/generator-typescript-plugin-client",
     "@hilla/generator-typescript-utils": "$@hilla/generator-typescript-utils",
-    "@hilla/frontend": "$@hilla/frontend",
-    "@hilla/form": "$@hilla/form",
     "@hilla/generator-typescript-plugin-backbone": "$@hilla/generator-typescript-plugin-backbone",
-    "@hilla/generator-typescript-cli": "$@hilla/generator-typescript-cli",
-    "@hilla/react-form": "$@hilla/react-form"
+    "@hilla/generator-typescript-cli": "$@hilla/generator-typescript-cli"
   },
   "vaadin": {
     "dependencies": {
@@ -110,6 +112,6 @@
       "workbox-core": "7.0.0",
       "workbox-precaching": "7.0.0"
     },
-    "hash": "2a95f971ab36c5e79a2b54e6aab9fc3879eca30bb40c1dcb12d8d799a24367f8"
+    "hash": "d01d7f873b52306340cf4b10d74925017db433667105018549b86b4e96e4bde4"
   }
 }

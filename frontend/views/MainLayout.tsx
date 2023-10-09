@@ -1,28 +1,29 @@
-import { AppLayout } from '@hilla/react-components/AppLayout.js';
-import { DrawerToggle } from '@hilla/react-components/DrawerToggle.js';
-import Placeholder from 'Frontend/components/placeholder/Placeholder';
-import { useRouteMetadata } from 'Frontend/util/routing';
-import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { AppLayout } from "@hilla/react-components/AppLayout.js";
+import { DrawerToggle } from "@hilla/react-components/DrawerToggle.js";
+import Placeholder from "Frontend/components/placeholder/Placeholder";
+import { Suspense, lazy } from "react";
 
-const navLinkClasses = ({ isActive }: any) => {
-  return `block rounded-m p-s ${isActive ? 'bg-primary-10 text-primary' : 'text-body'}`;
-};
+const AboutView = lazy(async () => import("Frontend/views/about/AboutView.js"));
+const HelloWorldView = lazy(
+  async () => import("Frontend/views/helloworld/HelloWorldView.js")
+);
 
 export default function MainLayout() {
-  const currentTitle = useRouteMetadata()?.title ?? 'My App';
+  const currentTitle = "My App";
   return (
     <AppLayout primarySection="drawer">
       <div slot="drawer" className="flex flex-col justify-between h-full p-m">
         <header className="flex flex-col gap-m">
           <h1 className="text-l m-0">My App</h1>
           <nav>
-            <NavLink className={navLinkClasses} to="/">
-              Hello World
-            </NavLink>
-            <NavLink className={navLinkClasses} to="/about">
-              About
-            </NavLink>
+            <ul>
+              <li>
+                <a href="#">Hello World</a>
+              </li>
+              <li>
+                <a href="#">About</a>
+              </li>
+            </ul>
           </nav>
         </header>
       </div>
@@ -33,7 +34,7 @@ export default function MainLayout() {
       </h2>
 
       <Suspense fallback={<Placeholder />}>
-        <Outlet />
+        <HelloWorldView />
       </Suspense>
     </AppLayout>
   );
