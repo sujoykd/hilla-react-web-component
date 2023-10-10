@@ -4,6 +4,8 @@ import { TextField } from "@hilla/react-components/TextField.js";
 import { HelloWorldService } from "Frontend/generated/endpoints.js";
 import { useState } from "react";
 
+import "./HelloWorld.css";
+
 export default function HelloWorldView() {
   const [name, setName] = useState("");
 

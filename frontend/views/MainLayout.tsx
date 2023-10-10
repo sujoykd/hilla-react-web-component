@@ -1,11 +1,36 @@
-import { lazy } from "react";
+import Placeholder from "Frontend/components/placeholder/Placeholder";
+import React, { Suspense, lazy, useMemo, useState } from "react";
 
 const AboutView = lazy(async () => import("Frontend/views/about/AboutView.js"));
 const HelloWorldView = lazy(
   async () => import("Frontend/views/helloworld/HelloWorldView.js")
 );
 
+const childComponents: Map<
+  string,
+  React.LazyExoticComponent<() => JSX.Element>
+> = new Map([
+  ["helloWorld", HelloWorldView],
+  ["about", AboutView],
+]);
+
 export default function MainLayout() {
+  const [componentName, setComponentName] = useState("");
+
+  const createChildComponent = (name: string) => {
+    const component = childComponents.get(name);
+
+    const componentProps = {};
+    if (component) {
+      return React.createElement(component, componentProps);
+    }
+    return null;
+  };
+
+  const childComponent = useMemo(() => {
+    return createChildComponent(componentName);
+  }, [componentName]);
+
   const currentTitle = "My App";
   return (
     <>
@@ -16,16 +41,16 @@ export default function MainLayout() {
         <nav>
           <ul>
             <li>
-              <a href="#">Hello World</a>
+              <a onClick={() => setComponentName("helloWorld")}>Hello World</a>
             </li>
             <li>
-              <a href="#">About</a>
+              <a onClick={() => setComponentName("about")}>About</a>
             </li>
           </ul>
         </nav>
       </header>
       <div part="content">
-        <HelloWorldView />
+        <Suspense fallback={<Placeholder />}>{childComponent}</Suspense>
       </div>
     </>
   );
