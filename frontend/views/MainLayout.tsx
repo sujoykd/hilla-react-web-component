@@ -1,5 +1,6 @@
 import Placeholder from "Frontend/components/placeholder/Placeholder";
-import React, { Suspense, lazy, useMemo, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 const AboutView = lazy(async () => import("Frontend/views/about/AboutView.js"));
 const HelloWorldView = lazy(
@@ -18,8 +19,14 @@ const childComponents: Map<
   ["dialog", DialogView],
 ]);
 
-export default function MainLayout() {
-  const [componentName, setComponentName] = useState("");
+const navLinkClasses = ({ isActive }: any) => {
+  return `block rounded-m p-s ${
+    isActive ? "bg-primary-10 text-primary" : "text-body"
+  }`;
+};
+
+export default function MainLayout({ routeEnabled = false }) {
+  const [componentName, setComponentName] = useState("helloWorld");
 
   const createChildComponent = (name: string) => {
     const component = childComponents.get(name);
@@ -31,8 +38,9 @@ export default function MainLayout() {
     return null;
   };
 
-  const childComponent = useMemo(() => {
-    return createChildComponent(componentName);
+  let childComponent = createChildComponent(componentName);
+  useEffect(() => {
+    childComponent = createChildComponent(componentName);
   }, [componentName]);
 
   const currentTitle = "My App";
@@ -44,20 +52,40 @@ export default function MainLayout() {
         </h1>
         <nav>
           <ul>
-            <li>
-              <a onClick={() => setComponentName("helloWorld")}>Hello World</a>
-            </li>
-            <li>
-              <a onClick={() => setComponentName("about")}>About</a>
-            </li>
-            <li>
-              <a onClick={() => setComponentName("dialog")}>Dialog</a>
-            </li>
+            {routeEnabled ? (
+              <>
+                <NavLink className={navLinkClasses} to="/">
+                  Hello World
+                </NavLink>
+                <NavLink className={navLinkClasses} to="/dialog">
+                  Dialogs
+                </NavLink>
+                <NavLink className={navLinkClasses} to="/about">
+                  About
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <li>
+                  <a onClick={() => setComponentName("helloWorld")}>
+                    Hello World
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setComponentName("about")}>About</a>
+                </li>
+                <li>
+                  <a onClick={() => setComponentName("dialog")}>Dialog</a>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </header>
       <div part="content">
-        <Suspense fallback={<Placeholder />}>{childComponent}</Suspense>
+        <Suspense fallback={<Placeholder />}>
+          {routeEnabled ? <Outlet /> : childComponent}
+        </Suspense>
       </div>
     </>
   );
