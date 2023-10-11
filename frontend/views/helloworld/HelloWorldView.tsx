@@ -4,14 +4,14 @@ import { TextField } from "@hilla/react-components/TextField.js";
 import { HelloWorldService } from "Frontend/generated/endpoints.js";
 import { useState } from "react";
 
-import "./HelloWorld.css";
+import styles from "./HelloWorld.module.css";
 
 export default function HelloWorldView() {
   const [name, setName] = useState("");
 
   return (
     <>
-      <section className="flex p-m gap-m items-end">
+      <section className={`${styles.world} flex p-m gap-m items-end`}>
         <TextField
           label="Your name"
           onValueChanged={(e) => {

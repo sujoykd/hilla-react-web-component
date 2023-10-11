@@ -5,6 +5,9 @@ const AboutView = lazy(async () => import("Frontend/views/about/AboutView.js"));
 const HelloWorldView = lazy(
   async () => import("Frontend/views/helloworld/HelloWorldView.js")
 );
+const DialogView = lazy(
+  async () => import("Frontend/views/dialogview/DialogView.js")
+);
 
 const childComponents: Map<
   string,
@@ -12,6 +15,7 @@ const childComponents: Map<
 > = new Map([
   ["helloWorld", HelloWorldView],
   ["about", AboutView],
+  ["dialog", DialogView],
 ]);
 
 export default function MainLayout() {
@@ -45,6 +49,9 @@ export default function MainLayout() {
             </li>
             <li>
               <a onClick={() => setComponentName("about")}>About</a>
+            </li>
+            <li>
+              <a onClick={() => setComponentName("dialog")}>Dialog</a>
             </li>
           </ul>
         </nav>

@@ -3,14 +3,21 @@
   <head>
     <title>Web Component</title>
     <style>
-      my-app::part("container") {
-        color: red;
-        background-color: red;
+      my-app::part(container) {
+        background-color: beige;
+        padding: 20px;
+      }
+
+      my-app::part(heading) {
+        color: blueviolet;
+        font-size: 32px;
       }
     </style>
   </head>
   <body>
-    <span>body content</span>
+    <div style="width: 100%; height: 200px;">
+      <span>other content</span>
+    </div>
     <my-app></my-app>
 
     <script
