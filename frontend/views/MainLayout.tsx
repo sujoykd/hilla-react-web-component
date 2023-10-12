@@ -1,19 +1,11 @@
 import Placeholder from "Frontend/components/placeholder/Placeholder";
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import HelloWorldView from "./helloworld/HelloWorldView";
+import AboutView from "./about/AboutView";
+import DialogView from "./dialogview/DialogView";
 
-const AboutView = lazy(async () => import("Frontend/views/about/AboutView.js"));
-const HelloWorldView = lazy(
-  async () => import("Frontend/views/helloworld/HelloWorldView.js")
-);
-const DialogView = lazy(
-  async () => import("Frontend/views/dialogview/DialogView.js")
-);
-
-const childComponents: Map<
-  string,
-  React.LazyExoticComponent<() => JSX.Element>
-> = new Map([
+const childComponents: Map<string, () => JSX.Element> = new Map([
   ["helloWorld", HelloWorldView],
   ["about", AboutView],
   ["dialog", DialogView],

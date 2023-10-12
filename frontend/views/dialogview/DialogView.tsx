@@ -4,8 +4,10 @@ import { TextField } from "@hilla/react-components/TextField.js";
 import { VerticalLayout } from "@hilla/react-components/VerticalLayout.js";
 import { useState } from "react";
 
+import styles from "./DialogView.module.css";
+
 export default function DialogView() {
-    const [dialogOpened, setDialogOpened] = useState(false);
+  const [dialogOpened, setDialogOpened] = useState(false);
 
   return (
     <>
@@ -26,6 +28,7 @@ export default function DialogView() {
         )}
       >
         <VerticalLayout
+          className={`${styles.world}`}
           style={{ alignItems: "stretch", width: "18rem", maxWidth: "100%" }}
         >
           <TextField label="First name" />
