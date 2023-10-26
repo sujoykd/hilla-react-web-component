@@ -1,5 +1,5 @@
 import Placeholder from "Frontend/components/placeholder/Placeholder";
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import HelloWorldView from "./helloworld/HelloWorldView";
 import AboutView from "./about/AboutView";
